@@ -159,7 +159,7 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
       transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
       className="h-full"
     >
-      <Card className="h-full bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-gray-600/50 transition-all duration-500 hover:scale-[1.02] group overflow-hidden shadow-2xl hover:shadow-cyan-500/10">
+      <Card className="h-full glass neon-blue hover:neon-purple transition-all duration-500 hover:scale-[1.02] group overflow-hidden">
         <CardContent className="p-0 h-full flex flex-col">
           {/* Header with Icon and Category */}
           <div className="relative p-6 pb-4">
@@ -178,28 +178,28 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
               </div>
               <Badge
                 variant="secondary"
-                className="bg-gray-800/80 text-gray-300 text-xs px-2 py-1"
+                className="glass hover:neon-blue transition-all duration-300 text-xs px-2 py-1"
               >
                 {project.category}
               </Badge>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300 mb-3">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-accent transition-colors duration-300 mb-3">
               {project.name}
             </h3>
 
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-3">
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3">
               {project.description}
             </p>
 
-            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+            <p className="text-muted-foreground/80 text-xs sm:text-sm leading-relaxed">
               {project.longDescription}
             </p>
           </div>
 
           {/* Technologies */}
           <div className="px-6 pb-4 flex-1">
-            <h4 className="text-xs sm:text-sm font-semibold text-gray-300 uppercase tracking-wide mb-3">
+            <h4 className="text-xs sm:text-sm font-semibold text-foreground uppercase tracking-wide mb-3">
               Tech Stack
             </h4>
             <div className="flex flex-wrap gap-2">
@@ -215,7 +215,7 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
                 >
                   <Badge
                     variant="outline"
-                    className="bg-gray-800/60 border-gray-600/50 text-gray-300 hover:bg-gray-700/60 hover:border-cyan-400/50 hover:text-cyan-300 transition-all duration-300 text-xs px-2 py-1"
+                    className="glass hover:neon-blue transition-all duration-300 hover:scale-110 text-xs px-2 py-1"
                   >
                     {tech}
                   </Badge>
@@ -230,7 +230,7 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="flex-1 bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800 hover:border-cyan-400 hover:text-cyan-300 transition-all duration-300"
+                className="flex-1 glass glass-dark hover:neon-blue transition-all duration-300"
                 asChild
               >
                 <a
@@ -246,7 +246,7 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
 
               <Button
                 size="sm"
-                className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
+                className="flex-1 bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-primary-foreground font-semibold shadow-lg transition-all duration-300"
                 asChild
               >
                 <a
@@ -268,7 +268,7 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
 }
 
 export default function ProjectsSection() {
-  const [ref, inView] = useInView({
+  const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -276,11 +276,11 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen"
+      ref={ref}
+      className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-secondary/20 min-h-screen"
     >
       <div className="container mx-auto max-w-7xl">
         <motion.div
-          ref={ref}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8 }}
@@ -291,10 +291,10 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6"
             >
               Featured{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">
                 Projects
               </span>
             </motion.h2>
@@ -302,7 +302,7 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-sm sm:text-base md:text-lg text-gray-300 max-w-4xl mx-auto px-4"
+              className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-4xl mx-auto px-4"
             >
               A comprehensive showcase of my full-stack development expertise,
               featuring AI-powered applications, social platforms, mobile apps,
@@ -329,12 +329,12 @@ export default function ProjectsSection() {
             transition={{ delay: 1, duration: 0.8 }}
             className="text-center mt-12 sm:mt-16 lg:mt-20"
           >
-            <p className="text-gray-400 mb-6 text-sm sm:text-base">
+            <p className="text-muted-foreground mb-6 text-sm sm:text-base">
               Want to see more of my work or discuss a project?
             </p>
             <Button
               size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-3 shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
+              className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-primary-foreground font-semibold px-8 py-3 shadow-lg transition-all duration-300"
               asChild
             >
               <a href="#contact">Get In Touch</a>
