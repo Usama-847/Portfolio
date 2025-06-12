@@ -1,34 +1,57 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Building2, Calendar, MapPin } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Building2, Calendar, MapPin } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const experience = {
-  title: 'Software Engineer',
-  company: 'Kakushin',
-  location: 'Remote',
-  period: '2022 - Present',
-  description: [
-    'Developing and maintaining scalable web applications using modern JavaScript frameworks',
-    'Designing system architecture and implementing best practices for code quality',
-    'Collaborating with cross-functional teams to deliver innovative solutions for clients',
-    'Mentoring junior developers and contributing to technical decision-making',
-    'Implementing CI/CD pipelines and optimizing application performance',
+  title: "Software Engineer",
+  company: "Kakushin",
+  location: "Onsite",
+  period: "2024 June - Present",
+  roles: [
+    {
+      title: "Full Stack Development",
+      responsibilities: [
+        "Developing and maintaining scalable web applications using modern JavaScript frameworks",
+        "Designing system architecture and implementing best practices for code quality",
+        "Collaborating with cross-functional teams to deliver innovative solutions for clients",
+        "Mentoring junior developers and contributing to technical decision-making",
+        "Managed version control, project tracking, and API testing with Git, Jira, and Postman, ensuring scalable and maintainable codebases",
+        "Collaborated with teams to optimize application performance and deliver user-friendly interfaces",
+        "Integrated cloud solutions like Azure Blob Storage for media handling and scalable data storage",
+      ],
+    },
+    {
+      title: "Quality Assurance Analyst",
+      responsibilities: [
+        "Conducted testing for web and mobile applications using Jira for defect tracking and documentation",
+        "Validated front-end (React.js, Next.js, HTML5, CSS3) and back-end (Node.js, MongoDB, Firebase) functionalities to ensure software quality",
+        "Ensured alignment with design specifications through test cases and execution results",
+      ],
+    },
   ],
   technologies: [
-    'JavaScript',
-    'TypeScript',
-    'React',
-    'Next.js',
-    'Node.js',
-    'Express',
-    'Supabase',
-    'AWS',
-    'Docker',
-    'Git',
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express",
+    "Supabase",
+    "Firebase",
+    "MongoDB",
+    "Git",
+    "Jira",
+    "React Native",
+    "Tailwind CSS",
+    "Bootstrap",
+    "HTML5",
+    "CSS3",
+    "Postman",
+    "Azure Blob Storage",
   ],
 };
 
@@ -39,7 +62,10 @@ export default function ExperienceSection() {
   });
 
   return (
-    <section id="experience" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-secondary/20">
+    <section
+      id="experience"
+      className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-secondary/20"
+    >
       <div className="container mx-auto">
         <motion.div
           ref={ref}
@@ -53,9 +79,9 @@ export default function ExperienceSection() {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6"
+              className="text-3xl md:text-6xl font-bold text-foreground mb-6"
             >
-              Professional{' '}
+              Professional{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">
                 Experience
               </span>
@@ -64,10 +90,10 @@ export default function ExperienceSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl text-muted-foreground max-w-3xl mx-auto"
+              className="text-lg text-muted-foreground max-w-3xl mx-auto"
             >
-              Building innovative solutions and contributing to meaningful projects
-              that drive business growth and user satisfaction.
+              Building innovative solutions and contributing to meaningful
+              projects that drive business growth and user satisfaction.
             </motion.p>
           </div>
 
@@ -95,7 +121,7 @@ export default function ExperienceSection() {
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="flex flex-col space-y-2">
                         <div className="flex items-center space-x-2 text-muted-foreground">
                           <Calendar className="w-4 h-4" />
@@ -110,24 +136,31 @@ export default function ExperienceSection() {
                   </div>
 
                   {/* Description */}
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-foreground">
-                      Key Responsibilities
-                    </h4>
-                    <ul className="space-y-3">
-                      {experience.description.map((item, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={inView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
-                          className="flex items-start space-x-3 text-muted-foreground"
-                        >
-                          <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                          <span>{item}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
+                  <div className="space-y-6">
+                    {experience.roles.map((role, roleIndex) => (
+                      <div key={roleIndex} className="space-y-4">
+                        <h4 className="text-lg font-semibold text-accent border-l-4 border-accent pl-4">
+                          {role.title}
+                        </h4>
+                        <ul className="space-y-3">
+                          {role.responsibilities.map((item, index) => (
+                            <motion.li
+                              key={index}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={inView ? { opacity: 1, x: 0 } : {}}
+                              transition={{
+                                delay: 0.8 + roleIndex * 0.2 + index * 0.1,
+                                duration: 0.6,
+                              }}
+                              className="flex items-start space-x-3 text-muted-foreground"
+                            >
+                              <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
+                              <span>{item}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
 
                   {/* Technologies */}
@@ -141,7 +174,10 @@ export default function ExperienceSection() {
                           key={tech}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={inView ? { opacity: 1, scale: 1 } : {}}
-                          transition={{ delay: 1.2 + index * 0.05, duration: 0.4 }}
+                          transition={{
+                            delay: 1.4 + index * 0.05,
+                            duration: 0.4,
+                          }}
                         >
                           <Badge
                             variant="secondary"

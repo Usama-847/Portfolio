@@ -10,7 +10,7 @@ const features = [
     icon: Code2,
     title: "Full-Stack Development",
     description:
-      "Expertise in modern web technologies including Next.js, TypeScript, and Node.js",
+      "Expertise in modern web technologies including Next.js, TypeScript, React Native, React and Node.js",
   },
   {
     icon: Brain,
@@ -83,14 +83,14 @@ export default function AboutSection() {
                 <h3 className="text-2xl font-bold text-foreground">
                   Software Engineer at Kakushin
                 </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
                   I specialize in full-stack web development with a particular
                   passion for modern JavaScript frameworks and cutting-edge
                   technologies. My journey in software development has been
                   driven by curiosity and a desire to solve complex problems
                   through elegant code.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
                   Currently working at Kakushin, I focus on developing scalable
                   web applications, designing system architectures, and
                   collaborating with cross-functional teams to deliver

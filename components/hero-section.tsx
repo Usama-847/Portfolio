@@ -22,14 +22,12 @@ export default function HeroSection() {
   };
 
   const openCV = () => {
-    // Your Google Drive CV link
     const cvUrl =
       "https://drive.google.com/file/d/1C5wxH565O7lygDLhgmai_AuxV20lzByx/view?usp=sharing";
     window.open(cvUrl, "_blank");
   };
 
   const downloadCV = () => {
-    // Convert Google Drive view link to download link
     const fileId = "1C5wxH565O7lygDLhgmai_AuxV20lzByx";
     const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
     const link = document.createElement("a");
@@ -49,14 +47,18 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+    <section
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20"
+      style={{ perspective: "1000px" }}
+    >
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -100, z: -100 }}
+            animate={{ opacity: 1, x: 0, z: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
+            style={{ transformStyle: "preserve-3d" }}
             className="space-y-8"
           >
             <div className="space-y-4">
@@ -64,7 +66,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-accent font-medium text-lg"
+                className="text-accent font-medium text-lg md:text-xl"
               >
                 Hello, I'm
               </motion.p>
@@ -73,7 +75,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground leading-tight"
+                className="text-2xl md:text-4xl font-bold text-foreground leading-tight"
               >
                 Muhammad{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-primary to-purple-500">
@@ -86,7 +88,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="text-xl sm:text-2xl text-muted-foreground font-medium"
+                className="text-xl md:text-3xl text-muted-foreground font-medium"
               >
                 Software Engineer at{" "}
                 <span className="text-accent">Kakushin</span>
@@ -111,47 +113,62 @@ export default function HeroSection() {
               transition={{ delay: 1.2 }}
               className="flex flex-wrap gap-3 sm:gap-4"
             >
-              <Button
-                variant="outline"
-                size="icon"
-                className="glass neon-blue hover:scale-110 transition-all duration-300 w-12 h-12"
-                asChild
+              <motion.div
+                whileHover={{ scale: 1.1, rotateY: 15 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <a
-                  href="https://github.com/Usama-847"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub Profile"
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="glass neon-blue w-12 h-12"
+                  asChild
                 >
-                  <Github className="h-5 w-5" />
-                </a>
-              </Button>
+                  <a
+                    href="https://github.com/Usama-847"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub Profile"
+                  >
+                    <Github className="h-5 w-5" />
+                  </a>
+                </Button>
+              </motion.div>
 
-              <Button
-                variant="outline"
-                size="icon"
-                className="glass neon-blue hover:scale-110 transition-all duration-300 w-12 h-12"
-                asChild
+              <motion.div
+                whileHover={{ scale: 1.1, rotateY: 15 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <a
-                  href="https://www.linkedin.com/in/muhammad-usama-mehmood/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn Profile"
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="glass neon-blue w-12 h-12"
+                  asChild
                 >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </Button>
+                  <a
+                    href="https://www.linkedin.com/in/muhammad-usama-mehmood/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </Button>
+              </motion.div>
 
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={openGmail}
-                className="glass neon-blue hover:scale-110 transition-all duration-300 w-12 h-12"
-                aria-label="Email Contact"
+              <motion.div
+                whileHover={{ scale: 1.1, rotateY: 15 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <Mail className="h-5 w-5" />
-              </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={openGmail}
+                  className="glass neon-blue w-12 h-12"
+                  aria-label="Email Contact"
+                >
+                  <Mail className="h-5 w-5" />
+                </Button>
+              </motion.div>
             </motion.div>
 
             {/* CV Section */}
@@ -166,26 +183,36 @@ export default function HeroSection() {
                 Resume / CV
               </h3>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  onClick={openCV}
-                  variant="outline"
-                  className="glass neon-blue hover:scale-105 transition-all duration-300 flex items-center gap-2 px-6 py-3"
+              <div className="flex flex-col md:flex-row gap-3">
+                <motion.div
+                  whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Eye className="h-4 w-4" />
-                  <span className="hidden sm:inline">View CV</span>
-                  <span className="sm:hidden">View</span>
-                </Button>
+                  <Button
+                    onClick={openCV}
+                    variant="outline"
+                    className="glass neon-blue flex items-center gap-2 px-6 py-3"
+                  >
+                    <Eye className="h-4 w-4" />
+                    <span className="hidden sm:inline">View CV</span>
+                    <span className="sm:hidden">View</span>
+                  </Button>
+                </motion.div>
 
-                <Button
-                  onClick={downloadCV}
-                  variant="outline"
-                  className="glass neon-blue hover:scale-105 transition-all duration-300 flex items-center gap-2 px-6 py-3"
+                <motion.div
+                  whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Download className="h-4 w-4" />
-                  <span className="hidden sm:inline">Download CV</span>
-                  <span className="sm:hidden">Download</span>
-                </Button>
+                  <Button
+                    onClick={downloadCV}
+                    variant="outline"
+                    className="glass neon-blue flex items-center gap-2 px-6 py-3"
+                  >
+                    <Download className="h-4 w-4" />
+                    <span className="hidden sm:inline">Download CV</span>
+                    <span className="sm:hidden">Download</span>
+                  </Button>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -195,23 +222,29 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5 }}
             >
-              <Button
-                onClick={scrollToAbout}
-                className="bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-background font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-full neon-blue hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              <motion.div
+                whileHover={{ scale: 1.05, rotateX: -5, rotateY: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                Explore My Work
-              </Button>
+                <Button
+                  onClick={scrollToAbout}
+                  className="bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-background font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-full neon-blue w-full md:w-auto"
+                >
+                  Explore My Work
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
 
           {/* 3D Avatar */}
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 100, z: -100 }}
+            animate={{ opacity: 1, x: 0, z: 50 }}
             transition={{ duration: 1, delay: 0.4 }}
+            style={{ transformStyle: "preserve-3d" }}
             className="relative order-first lg:order-last"
           >
-            <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px]">
+            <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] drop-shadow-2xl">
               <HeroAvatar />
             </div>
           </motion.div>
