@@ -1,36 +1,36 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import SkillOrb from '@/components/skill-orb';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import SkillOrb from "@/components/skill-orb";
 
 const skillCategories = [
   {
-    name: 'Frontend',
+    name: "Frontend",
     skills: [
-      { name: 'React', level: 95, color: '#61DAFB' },
-      { name: 'Next.js', level: 90, color: '#000000' },
-      { name: 'TypeScript', level: 88, color: '#3178C6' },
-      { name: 'Tailwind CSS', level: 92, color: '#06B6D4' },
-      { name: 'Three.js', level: 80, color: '#049EF4' },
+      { name: "React", level: 95, color: "#61DAFB" },
+      { name: "Next.js", level: 90, color: "#000000" },
+      { name: "TypeScript", level: 88, color: "#3178C6" },
+      { name: "Tailwind CSS", level: 92, color: "#06B6D4" },
+      { name: "Three.js", level: 80, color: "#049EF4" },
     ],
   },
   {
-    name: 'Backend',
+    name: "Backend",
     skills: [
-      { name: 'Node.js', level: 85, color: '#339933' },
-      { name: 'Express', level: 82, color: '#000000' },
-      { name: 'Supabase', level: 88, color: '#3ECF8E' },
-      { name: 'MongoDB', level: 80, color: '#47A248' },
+      { name: "Node.js", level: 85, color: "#339933" },
+      { name: "Express", level: 82, color: "#000000" },
+      { name: "Supabase", level: 88, color: "#3ECF8E" },
+      { name: "MongoDB", level: 80, color: "#47A248" },
     ],
   },
   {
-    name: 'Tools & Others',
+    name: "Tools & Others",
     skills: [
-      { name: 'Git', level: 90, color: '#F05032' },
-      { name: 'Docker', level: 75, color: '#2496ED' },
-      { name: 'AWS', level: 70, color: '#FF9900' },
-      { name: 'Vercel', level: 85, color: '#000000' },
+      { name: "Git", level: 90, color: "#F05032" },
+      { name: "Docker", level: 75, color: "#2496ED" },
+      { name: "AWS", level: 70, color: "#FF9900" },
+      { name: "Vercel", level: 85, color: "#000000" },
     ],
   },
 ];
@@ -42,7 +42,10 @@ export default function SkillsSection() {
   });
 
   return (
-    <section id="skills" className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-secondary/20">
+    <section
+      id="skills"
+      className="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-secondary/20"
+    >
       <div className="container mx-auto">
         <motion.div
           ref={ref}
@@ -58,7 +61,7 @@ export default function SkillsSection() {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6"
             >
-              Technical{' '}
+              Technical{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">
                 Skills
               </span>
@@ -69,8 +72,8 @@ export default function SkillsSection() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xl text-muted-foreground max-w-3xl mx-auto"
             >
-              A comprehensive toolkit of modern technologies and frameworks
-              that I use to build exceptional digital experiences.
+              A comprehensive toolkit of modern technologies and frameworks that
+              I use to build exceptional digital experiences.
             </motion.p>
           </div>
 
@@ -81,7 +84,7 @@ export default function SkillsSection() {
             transition={{ delay: 0.6, duration: 1 }}
             className="h-96 mb-16"
           >
-            <SkillOrb skills={skillCategories.flatMap(cat => cat.skills)} />
+            <SkillOrb skills={skillCategories.flatMap((cat) => cat.skills)} />
           </motion.div>
 
           {/* Skills Categories */}

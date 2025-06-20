@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, Text } from '@react-three/drei';
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Group, Mesh } from 'three';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Float, Text } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Group, Mesh } from "three";
 
 function Avatar() {
   const groupRef = useRef<Group>(null);
@@ -12,7 +12,8 @@ function Avatar() {
 
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      groupRef.current.rotation.y =
+        Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
     }
     if (ringRef.current) {
       ringRef.current.rotation.z = state.clock.elapsedTime * 0.5;
@@ -32,7 +33,7 @@ function Avatar() {
             wireframe
           />
         </mesh>
-        
+
         {/* Inner Core */}
         <mesh position={[0, 0, 0]}>
           <sphereGeometry args={[0.8, 16, 16]} />
@@ -43,7 +44,7 @@ function Avatar() {
             wireframe
           />
         </mesh>
-        
+
         {/* Rotating Ring */}
         <mesh ref={ringRef} position={[0, 0, 0]} rotation={[0, 0, 0]}>
           <torusGeometry args={[2, 0.1, 8, 32]} />
@@ -54,7 +55,7 @@ function Avatar() {
             wireframe
           />
         </mesh>
-        
+
         {/* Floating Code Symbols */}
         <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
           <Text
@@ -64,10 +65,10 @@ function Avatar() {
             anchorX="center"
             anchorY="middle"
           >
-            {'</>'}
+            {"</>"}
           </Text>
         </Float>
-        
+
         <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
           <Text
             position={[3, -1, 1]}
@@ -76,10 +77,10 @@ function Avatar() {
             anchorX="center"
             anchorY="middle"
           >
-            {'{}'}
+            {"{}"}
           </Text>
         </Float>
-        
+
         <Float speed={0.8} rotationIntensity={0.5} floatIntensity={1}>
           <Text
             position={[2, 3, -1]}
@@ -88,11 +89,11 @@ function Avatar() {
             anchorX="center"
             anchorY="middle"
           >
-            {'()'}
+            {"()"}
           </Text>
         </Float>
       </Float>
-      
+
       {/* Orbital Elements */}
       <Float speed={3} rotationIntensity={1} floatIntensity={2}>
         <mesh position={[4, 0, 2]}>
@@ -105,7 +106,7 @@ function Avatar() {
           />
         </mesh>
       </Float>
-      
+
       <Float speed={2.5} rotationIntensity={1} floatIntensity={2}>
         <mesh position={[-4, 1, -2]}>
           <octahedronGeometry args={[0.4]} />

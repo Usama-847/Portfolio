@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
-import { Stars, Float } from '@react-three/drei';
-import { motion } from 'framer-motion';
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Stars, Float } from "@react-three/drei";
+import { motion } from "framer-motion";
 
 function ParticleField() {
   return (
@@ -48,15 +48,19 @@ export default function Background3D() {
       >
         <Canvas
           camera={{ position: [0, 0, 10], fov: 60 }}
-          style={{ background: 'transparent' }}
+          style={{ background: "transparent" }}
         >
           <Suspense fallback={null}>
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} color="#00f5ff" />
-            <pointLight position={[-10, -10, 10]} intensity={0.5} color="#8b5cf6" />
-            
+            <pointLight
+              position={[-10, -10, 10]}
+              intensity={0.5}
+              color="#8b5cf6"
+            />
+
             <ParticleField />
-            
+
             <FloatingCube position={[-5, 3, -5]} />
             <FloatingCube position={[5, -3, -3]} />
             <FloatingCube position={[3, 5, -7]} />
