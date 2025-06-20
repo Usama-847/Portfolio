@@ -31,7 +31,7 @@ interface FormStatus {
 const socialLinks = [
   {
     name: "Email",
-    href: "mailto:usama.mehmood@example.com",
+    href: "mailto:usama.mehmood0007@gmail.com",
     icon: Mail,
     color: "#00f5ff",
   },

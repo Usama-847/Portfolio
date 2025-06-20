@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useTheme } from 'next-themes';
-import { Sun, Moon, Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import NavigationSphere from '@/components/navigation-sphere';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
+import { Sun, Moon, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import NavigationSphere from "@/components/navigation-sphere";
 
 const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact' },
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
@@ -23,20 +23,28 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true);
-    
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+      // If mobile menu is open, close it first and add a delay
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        // Add a delay to allow the mobile menu to close completely
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 350); // Slightly longer than the menu animation duration (300ms)
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -48,7 +56,7 @@ export default function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'glass-dark backdrop-blur-md' : 'bg-transparent'
+        isScrolled ? "glass-dark backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,10 +97,10 @@ export default function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 className="glass rounded-full p-2"
               >
-                {theme === 'light' ? (
+                {theme === "light" ? (
                   <Moon className="h-5 w-5" />
                 ) : (
                   <Sun className="h-5 w-5" />
@@ -126,7 +134,7 @@ export default function Header() {
         initial={{ opacity: 0, height: 0 }}
         animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
-          height: isMobileMenuOpen ? 'auto' : 0,
+          height: isMobileMenuOpen ? "auto" : 0,
         }}
         transition={{ duration: 0.3 }}
         className="md:hidden overflow-hidden glass-dark"
