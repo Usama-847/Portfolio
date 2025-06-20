@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Sphere, Wireframe } from '@react-three/drei';
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Mesh } from 'three';
+import { Canvas } from "@react-three/fiber";
+import { Sphere } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Mesh } from "three";
 
 function RotatingSphere() {
   const sphereRef = useRef<Mesh>(null);
@@ -18,7 +18,7 @@ function RotatingSphere() {
 
   return (
     <Sphere ref={sphereRef} args={[1, 16, 16]}>
-      <Wireframe thickness={0.02} color="#00f5ff" />
+      <meshBasicMaterial color="#00f5ff" wireframe />
     </Sphere>
   );
 }

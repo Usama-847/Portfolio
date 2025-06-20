@@ -1,14 +1,21 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
-import { Mail, Github, Linkedin, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import ContactForm3D from '@/components/contact-form-3d';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useState } from "react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import ContactForm3D from "@/components/contact-form-3d";
 
 interface FormData {
   name: string;
@@ -17,28 +24,28 @@ interface FormData {
 }
 
 interface FormStatus {
-  type: 'idle' | 'loading' | 'success' | 'error';
+  type: "idle" | "loading" | "success" | "error";
   message: string;
 }
 
 const socialLinks = [
   {
-    name: 'Email',
-    href: 'mailto:usama.mehmood@example.com',
+    name: "Email",
+    href: "mailto:usama.mehmood@example.com",
     icon: Mail,
-    color: '#00f5ff',
+    color: "#00f5ff",
   },
   {
-    name: 'GitHub',
-    href: 'https://github.com/usama-mehmood',
+    name: "GitHub",
+    href: "https://github.com/usama-mehmood",
     icon: Github,
-    color: '#8b5cf6',
+    color: "#8b5cf6",
   },
   {
-    name: 'LinkedIn',
-    href: 'https://linkedin.com/in/usama-mehmood',
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/usama-mehmood",
     icon: Linkedin,
-    color: '#ec4899',
+    color: "#ec4899",
   },
 ];
 
@@ -49,40 +56,40 @@ export default function ContactSection() {
   });
 
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
   const [status, setStatus] = useState<FormStatus>({
-    type: 'idle',
-    message: '',
+    type: "idle",
+    message: "",
   });
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus({ type: 'loading', message: 'Sending message...' });
+    setStatus({ type: "loading", message: "Sending message..." });
 
     try {
       // Simulate API call - replace with actual Supabase integration
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       setStatus({
-        type: 'success',
-        message: 'Message sent successfully! I\'ll get back to you soon.',
+        type: "success",
+        message: "Message sent successfully! I'll get back to you soon.",
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       setStatus({
-        type: 'error',
-        message: 'Failed to send message. Please try again.',
+        type: "error",
+        message: "Failed to send message. Please try again.",
       });
     }
   };
@@ -104,7 +111,7 @@ export default function ContactSection() {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6"
             >
-              Get In{' '}
+              Get In{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-primary">
                 Touch
               </span>
@@ -115,8 +122,8 @@ export default function ContactSection() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xl text-muted-foreground max-w-3xl mx-auto"
             >
-              Ready to collaborate on your next project? Let's discuss how we can
-              bring your ideas to life with cutting-edge technology.
+              Ready to collaborate on your next project? Let's discuss how we
+              can bring your ideas to life with cutting-edge technology.
             </motion.p>
           </div>
 
@@ -132,7 +139,10 @@ export default function ContactSection() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-foreground mb-2"
+                        >
                           Full Name
                         </label>
                         <Input
@@ -146,9 +156,12 @@ export default function ContactSection() {
                           placeholder="Your full name"
                         />
                       </div>
-                      
+
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-foreground mb-2"
+                        >
                           Email Address
                         </label>
                         <Input
@@ -162,9 +175,12 @@ export default function ContactSection() {
                           placeholder="your.email@example.com"
                         />
                       </div>
-                      
+
                       <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium text-foreground mb-2"
+                        >
                           Message
                         </label>
                         <Textarea
@@ -181,21 +197,25 @@ export default function ContactSection() {
                     </div>
 
                     {/* Status Message */}
-                    {status.type !== 'idle' && (
+                    {status.type !== "idle" && (
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className={`flex items-center space-x-2 p-4 rounded-lg ${
-                          status.type === 'success'
-                            ? 'bg-green-500/20 text-green-400'
-                            : status.type === 'error'
-                            ? 'bg-red-500/20 text-red-400'
-                            : 'bg-blue-500/20 text-blue-400'
+                          status.type === "success"
+                            ? "bg-green-500/20 text-green-400"
+                            : status.type === "error"
+                            ? "bg-red-500/20 text-red-400"
+                            : "bg-blue-500/20 text-blue-400"
                         }`}
                       >
-                        {status.type === 'success' && <CheckCircle className="w-5 h-5" />}
-                        {status.type === 'error' && <AlertCircle className="w-5 h-5" />}
-                        {status.type === 'loading' && (
+                        {status.type === "success" && (
+                          <CheckCircle className="w-5 h-5" />
+                        )}
+                        {status.type === "error" && (
+                          <AlertCircle className="w-5 h-5" />
+                        )}
+                        {status.type === "loading" && (
                           <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
                         )}
                         <span>{status.message}</span>
@@ -204,10 +224,10 @@ export default function ContactSection() {
 
                     <Button
                       type="submit"
-                      disabled={status.type === 'loading'}
+                      disabled={status.type === "loading"}
                       className="w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-background font-semibold py-6 text-lg rounded-lg neon-blue hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {status.type === 'loading' ? (
+                      {status.type === "loading" ? (
                         <div className="flex items-center space-x-2">
                           <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
                           <span>Sending...</span>

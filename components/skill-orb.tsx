@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Float, Text, OrbitControls } from '@react-three/drei';
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Group } from 'three';
+import { Canvas } from "@react-three/fiber";
+import { Float, Text, OrbitControls } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Group } from "three";
 
 interface Skill {
   name: string;
@@ -16,7 +16,13 @@ interface SkillOrbProps {
   skills: Skill[];
 }
 
-function SkillSphere({ skill, position }: { skill: Skill; position: [number, number, number] }) {
+function SkillSphere({
+  skill,
+  position,
+}: {
+  skill: Skill;
+  position: [number, number, number];
+}) {
   const meshRef = useRef<Group>(null);
 
   useFrame((state) => {

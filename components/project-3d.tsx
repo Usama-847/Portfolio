@@ -1,28 +1,29 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Float, Box } from '@react-three/drei';
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Mesh } from 'three';
+import { Canvas } from "@react-three/fiber";
+import { Float, Box } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Group } from "three";
 
 interface Project3DProps {
   color: string;
 }
 
 function ProjectModel({ color }: Project3DProps) {
-  const meshRef = useRef<Mesh>(null);
+  const groupRef = useRef<Group>(null);
 
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.6) * 0.1;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+    if (groupRef.current) {
+      groupRef.current.rotation.x =
+        Math.sin(state.clock.elapsedTime * 0.6) * 0.1;
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.3;
     }
   });
 
   return (
     <Float speed={2} rotationIntensity={0.1} floatIntensity={0.2}>
-      <group ref={meshRef}>
+      <group ref={groupRef}>
         {/* Main Container */}
         <Box args={[3, 2, 0.2]} position={[0, 0, 0]}>
           <meshStandardMaterial
@@ -32,16 +33,12 @@ function ProjectModel({ color }: Project3DProps) {
             wireframe
           />
         </Box>
-        
+
         {/* Screen Content Simulation */}
         <Box args={[2.5, 1.5, 0.1]} position={[0, 0, 0.15]}>
-          <meshStandardMaterial
-            color={color}
-            transparent
-            opacity={0.3}
-          />
+          <meshStandardMaterial color={color} transparent opacity={0.3} />
         </Box>
-        
+
         {/* Floating Elements */}
         <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
           <Box args={[0.3, 0.3, 0.3]} position={[-2, 1.5, 1]}>
@@ -53,7 +50,7 @@ function ProjectModel({ color }: Project3DProps) {
             />
           </Box>
         </Float>
-        
+
         <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
           <Box args={[0.2, 0.2, 0.2]} position={[2.5, -1, 1.5]}>
             <meshStandardMaterial

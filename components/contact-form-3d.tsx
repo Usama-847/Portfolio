@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Float, Text } from '@react-three/drei';
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Group } from 'three';
+import { Canvas } from "@react-three/fiber";
+import { Float, Text } from "@react-three/drei";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Group } from "three";
 
 function ContactVisualization() {
   const groupRef = useRef<Group>(null);
 
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
+      groupRef.current.rotation.y =
+        Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
     }
   });
 
@@ -28,7 +29,7 @@ function ContactVisualization() {
             wireframe
           />
         </mesh>
-        
+
         {/* Email Envelope Flap */}
         <mesh position={[0, 1.3, 0.05]} rotation={[0.3, 0, 0]}>
           <planeGeometry args={[2, 0.8]} />
